@@ -5,6 +5,69 @@
 
 const root = document.querySelector(':root');
 const body = document.querySelector('body');
+const MAP_TILT_MAX = 8;
+const MAP_PERSPECTIVE = 900;
+let mapContainer = null;
+let mapInner = null;
+
+function getMapTiltMax() {
+  return body.classList.contains('vertical') ? 5 : MAP_TILT_MAX;
+}
+
+function updateMapTilt(mx, my) {
+  if (!mapInner) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    mapInner.style.transform = '';
+    return;
+  }
+  const tiltMax = getMapTiltMax();
+  const rotY = (mx - 0.5) * tiltMax * 2;
+  const rotX = (my - 0.5) * -tiltMax * 2;
+  mapInner.style.transform =
+    `perspective(${MAP_PERSPECTIVE}px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+}
+
+function resetMapTilt() {
+  if (typeof d !== 'undefined') {
+    d.mX = 0.5;
+    d.mY = 0.5;
+  }
+  updateMapTilt(0.5, 0.5);
+}
+
+function setMapPointerFromEvent(event) {
+  const rect = mapContainer.getBoundingClientRect();
+  const mx = (event.clientX - rect.left) / rect.width;
+  const my = (event.clientY - rect.top) / rect.height;
+  d.mX = Math.max(0, Math.min(1, mx));
+  d.mY = Math.max(0, Math.min(1, my));
+  updateMapTilt(d.mX, d.mY);
+}
+
+function initMapTilt() {
+  mapContainer = document.querySelector('.experience-map');
+  mapInner = document.querySelector('.experience-map > .inner');
+  if (!mapContainer || !mapInner) return;
+
+  mapContainer.addEventListener('mousemove', setMapPointerFromEvent);
+  mapContainer.addEventListener('mouseleave', resetMapTilt);
+
+  let ticking = false;
+  mapContainer.addEventListener('touchmove', function (event) {
+    if (!event.touches.length) return;
+    if (!ticking) {
+      const touch = event.touches[0];
+      window.requestAnimationFrame(() => {
+        setMapPointerFromEvent(touch);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }, { passive: true });
+
+  mapContainer.addEventListener('touchend', resetMapTilt);
+  mapContainer.addEventListener('touchcancel', resetMapTilt);
+}
 
 // 初始主题检测
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -19,7 +82,6 @@ const d = new Vue({
     h: 1004,
     mX: 0,
     mY: 0,
-    lang: typeof lang !== 'undefined' ? lang : 'cn',
     showModal: false,
     showAllCornerNames: false,
     darkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
@@ -40,14 +102,11 @@ const d = new Vue({
     sections: window.EXPERIENCE_DATA.sections,
     bridges: window.EXPERIENCE_DATA.bridges,
     corners: window.EXPERIENCE_DATA.corners,
-    aboutContent: "网页设计 & 开发：LLXiao</a><br/><br/><strong>联系我:</strong><br/>· 邮箱：xiliab@icloud.com<br/>· <a target='_blank' rel='noopener noreferrer' href='https://youtu.be/sqhoFEWHWfM?si=RfWSVIaOmMpQtxpL'>赛车游戏的交互视频</a><br/><br/><strong>致谢:</strong><br/>· jjying、LXM、一言一语",
+    aboutContent: "网页设计与开发：LLXiao<br/><br/><strong>联系</strong><br/>· 邮箱：xiliab@icloud.com<br/><br/><strong>关于本站</strong><br/>· 这是一个以交互式体验地图形式呈现的个人作品集。<br/>· SVG 赛道轨迹由我亲自绘制，覆盖 2012 年至今的 14 个成长节点。<br/>· 本站为纯静态页面，基于 Vue 2 + PHP 构建，未使用第三方建站工具。<br/><br/><strong>致谢</strong><br/>· 感谢 jjying、LXM、一言一语一直以来的支持与鼓励。",
   },
   methods: {
     innerModal(e) {
       e.stopPropagation();
-    },
-    toggleLang() {
-      this.lang = this.lang === 'en' ? 'cn' : 'en';
     },
     toggleDarkMode() {
       this.darkMode = !this.darkMode;
@@ -244,27 +303,7 @@ document.addEventListener('scroll', () => {
   }
 });
 
-document.querySelector('.experience-map > .inner').addEventListener('mousemove', function (event) {
-  const innerRect = this.getBoundingClientRect();
-  d.mX = (event.clientX - innerRect.left) / innerRect.width;
-  d.mY = (event.clientY - innerRect.top) / innerRect.height;
-});
-
-// 移动端触控支持，增加节流处理
-let ticking = false;
-document.querySelector('.experience-map > .inner').addEventListener('touchmove', function (event) {
-  if (!ticking) {
-    window.requestAnimationFrame(() => {
-      const innerRect = event.currentTarget.getBoundingClientRect();
-      const touch = event.touches[0];
-      d.mX = (touch.clientX - innerRect.left) / innerRect.width;
-      d.mY = (touch.clientY - innerRect.top) / innerRect.height;
-      ticking = false;
-    });
-    ticking = true;
-  }
-}, { passive: true });
-
 // 初始化执行
 updateScrollDistance();
 updatePageHeight();
+initMapTilt();

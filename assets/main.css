@@ -64,18 +64,11 @@
 }
 
 
-#app.en{
-  font-style: italic;
-}
 em{font-style: normal;}
 .title-font{
   font-family: var(--title-font);
   font-style: italic;
   font-weight: 700;
-}
-#app.en .title-font {
-  font-family: var(--body-font);
-  font-weight: 900;
 }
 [role="button"]:hover{
   cursor: pointer;
@@ -174,13 +167,11 @@ body{
 }
 
 
-/*~Title*/
-
 /*~Track*/
 .experience-map{
   grid-area: map;
   min-width: 0;
-  overflow: hidden;
+  overflow: visible;
   display: flex;
   justify-content: center; align-items: center;
   translate: 20vw 0;
@@ -206,10 +197,18 @@ body{
 .experience-map > .inner{
   position: relative;
   aspect-ratio: 660 / 530;
-
   max-width: 60vw; max-height: 100vh;
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+  backface-visibility: hidden;
   /* width: 100%; height: 100%; */
   /* object-fit: contain; */
+}
+@media (prefers-reduced-motion: reduce){
+  .experience-map > .inner{
+    transition: none;
+  }
 }
 .main-svg{
   object-fit: contain;
@@ -313,14 +312,6 @@ body.is-node-scrolling .progress{
       0 -.1em 0 var(--shadow);
   }
 
-  #app.en & > div{
-    transform: skewX(calc(-1 * var(--angle)));
-    transition: var(--transition);
-  }
-  #app.en & > div > div{
-    transform: skewX(var(--angle));
-    transition: var(--transition);
-  }
 }
 
 .corner-name.show{
@@ -551,10 +542,6 @@ body.is-node-scrolling .progress{
   /* color: var(--main); */
   position: relative;
   align-self: flex-start;
-
-  #app.en &{
-    font-weight: 700;
-  }
 }
 .desc .nickname{
   margin-top: .2em;
@@ -632,10 +619,6 @@ body.is-node-scrolling .progress{
 .ending .btn{
   font-size: .5em;
   margin-top: .8em;
-
-  #app.en &{
-    font-weight: 400;
-  }  
 }
 
 .thumbs{
@@ -652,11 +635,6 @@ body.is-node-scrolling .progress{
   transition-delay: .2s;
   transition-behavior: allow-discrete;
   translate: none;
-
-  #app.en &{
-    height: calc(4vmin + 8vmax);
-    flex: 0 1 calc(4vmin + 8vmax);
-  }
 
   @starting-style{
     opacity: 0;
@@ -697,11 +675,6 @@ body.is-node-scrolling .progress{
   scale: 1.2;
   transform-origin: 50% 50%;
 }
-
-#app.en .thumb{
-  width: calc(4vmin + 8vmax);
-}
-
 
 /* ~Controls */
 .controls{
