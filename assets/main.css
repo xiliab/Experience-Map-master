@@ -49,6 +49,9 @@
   background: var(--bg1);
   text-wrap: pretty;
 }
+:root:has(body.is-node-scrolling){
+  scroll-behavior: auto;
+}
 :root.dark{
   --main: #a51313;
   --text1: #ddd;
@@ -100,9 +103,6 @@ a:hover{
   transition: var(--transition);
   border-bottom: 1px solid var(--main);  
 }
-.mobile-only{
-	display: none !important;
-}
 .skew-p{
   transform: skewX(calc(var(--angle) * -1));
 }
@@ -135,8 +135,6 @@ a:hover{
 .btn.skew-p{
   border-radius: .4em .2em .4em .2em;
 }
-.primary-btn{
-}
 .btn:hover{
 	transition: var(--transition);
 	text-decoration: none;
@@ -165,7 +163,7 @@ body{
 	width: 100vw; height: 100vh;
 	grid-template-areas: "map desc";
 	/* grid-template-rows: auto 1fr; */
-  grid-template-columns: 3fr 2fr;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
   position: fixed;
   overflow: hidden;
 
@@ -177,19 +175,12 @@ body{
 
 
 /*~Title*/
-.title{
-  grid-area: title;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem;
-  font-weight: var(--bold);
-}
 
 /*~Track*/
 .experience-map{
   grid-area: map;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   justify-content: center; align-items: center;
   translate: 20vw 0;
@@ -250,9 +241,12 @@ body{
   stroke: var(--bg1);
   stroke-width: 2px;
   stroke-dasharray: var(--full);
-  transition: all .2s ease-out;
+  transition: stroke-dashoffset .35s ease-out;
   stroke-dashoffset: calc(var(--full) * (1 - var(--p)));
   stroke-linecap: round;
+}
+body.is-node-scrolling .progress{
+  transition-duration: .15s;
 }
 
 .path{
@@ -428,12 +422,6 @@ body{
   text-align: center;
   border-top: 1px dotted var(--bg3);
 }
-.scroll-notify{
-  align-items: center;
-  font-size: calc(.75rem + .3vmax + .3vmin);
-  width: 100%;
-  /* font-weight: 700; */
-}
 .scroll-arrow{
   width: .8em;
   margin-top: .5em;
@@ -484,6 +472,8 @@ body{
 /* ~Desc */
 .desc{
   grid-area: desc;
+  min-width: 0;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: center; align-items: stretch;
@@ -520,6 +510,7 @@ body{
 
 .corner-info{
   flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center; align-items: flex-start;
@@ -651,8 +642,12 @@ body{
   height: calc(2.5vmin + 5vmax);
   flex: 0 1 calc(2.5vmin + 5vmax);
   width: 100%;
+  min-width: 0;
   display: flex;
+  flex-wrap: nowrap;
   gap: .4em;
+  overflow-x: auto;
+  overflow-y: hidden;
   transition: var(--transition);
   transition-delay: .2s;
   transition-behavior: allow-discrete;
@@ -669,6 +664,9 @@ body{
   }
 }
 .thumb{
+  flex: 0 0 auto;
+  width: calc(2.5vmin + 5vmax);
+  min-width: 0;
   opacity: .6;
   filter: grayscale(1) contrast(2);
   height: 100%;
@@ -693,41 +691,17 @@ body{
   z-index: 9;
 }
 .thumb img{
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   scale: 1.2;
   transform-origin: 50% 50%;
 }
-.thumb-source{
-  font-size: .75rem;
-  display: block;
-  padding: .2em 1.4em .2em .3em;
-  background: var(--text1);
-  color: var(--bg2);
-  opacity: .5;
-  position: absolute;
-  right: -1em;
-  bottom: 0;
-  border: none;
-  transition: var(--transition-out);
-  animation: infoShow calc(.5 * var(--duration)) var(--curve) calc(1.5 * var(--duration)) both;
 
-  & span{
-    display: inline-block;
-  }
-
-  &:hover{
-    transition: var(--transition);
-    background: var(--main);
-    color: var(--bg1);
-    opacity: .8;
-  }
-
-  &::before{
-    content: "@";
-    opacity: .5;
-    margin-right: .1em;
-  }
+#app.en .thumb{
+  width: calc(4vmin + 8vmax);
 }
+
 
 /* ~Controls */
 .controls{
@@ -928,11 +902,6 @@ body{
   stroke-width: 2px;
   stroke: #fff;
 }
-.source-in-modal{
-  color: var(--text2);
-  text-align: right;
-  font-style: .875rem;
-}
 
 .all-names{
   position: fixed;
@@ -1016,6 +985,9 @@ body{
     flex: 0 1 5vh;
     height: 5vh;
   }
+  .thumb{
+    width: 5vh;
+  }
 
   .controls{
     font-size: .75rem;
@@ -1050,8 +1022,5 @@ body{
   background-color: #000;
   padding: 4px;
   display: inline-block;
-}
-.corner-more {
-  white-space: pre-wrap; /* 保留字符串里的回车换行 */
 }
 

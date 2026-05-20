@@ -1,7 +1,21 @@
 <?PHP
 header("Cache-Control: no-cache");
 require_once("env.php");
-$lastEditTime = date("jhi", filemtime(__FILE__));
+
+// 缓存策略：基于文件修改时间的 MD5 哈希
+$assets_files = ['assets/main.css', 'assets/data.js', 'assets/image-modal.js', 'assets/main.js'];
+$hash_str = "";
+foreach ($assets_files as $f) {
+    if (file_exists(__DIR__ . '/' . $f)) {
+        $hash_str .= filemtime(__DIR__ . '/' . $f);
+    }
+}
+$v = substr(md5($hash_str), 0, 8);
+$lastEditTime = $v; // 兼容旧变量名
+
+// 开发模式开关
+$debug = true;
+$ext = $debug ? "" : ".min";
 
 $acceptLanguage = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
 $languages = explode(',', $acceptLanguage);
@@ -59,7 +73,7 @@ echo
     <meta name="twitter:site" content="@xiliab" />
     <meta name="twitter:image" content="https://img.xiliab.online/uploads/screenshot.jpg" />
 
-    <link rel="stylesheet" href="{$assetsDir}/main.css?v={$lastEditTime}"/>
+    <link rel="stylesheet" href="{$assetsDir}/main{$ext}.css?v={$v}"/>
     {$extraHead}
     <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
     <link rel="icon" href="{$assetsDir}/fav.png">
@@ -67,20 +81,6 @@ echo
     <script>
       var lang = '{$jsLang}'
       // 保留上面这行
-
-// 可以注释掉下面几行 Matomo 部分：
-/*
-      var _paq = window._paq = window._paq || [];
-      _paq.push(['trackPageView']);
-      _paq.push(['enableLinkTracking']);
-      (function() {
-        var u="//anyway.fm/matomo/";
-        _paq.push(['setTrackerUrl', u+'matomo.php']);
-        _paq.push(['setSiteId', '3']);
-        var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-        g.async=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-      })();
-      */
     </script>
 
 	</head>
@@ -259,7 +259,7 @@ echo
         <use href="#track" class="base base2"/>
 
         <g class="extras">
-          <<!-- <path v-for="c in bridges" class="bridge" :d=" 'M' + w * c.stx + ' ' + h * c.sty + 'L' + w * c.edx + ' ' + h * c.edy"/> -->
+          <!-- <path v-for="c in bridges" class="bridge" :d=" 'M' + w * c.stx + ' ' + h * c.sty + 'L' + w * c.edx + ' ' + h * c.edy"/> -->
           <path class="bridge" d="M6 350 L-10 343" transform="translate(8, 4)"/>
         </g>
 
@@ -374,15 +374,21 @@ echo
     v-if="!img.type || img.type === 'image'"
     class="skew-n"
     :src="img.thumb || img.src"
+    :alt="img.desc || currentCorner.ch"
+    loading="lazy"
+    decoding="async"
     @click="openModal('image', idx)"
   />
-  <div v-else-if="img.type === 'video'">
+  <div v-else-if="img.type === 'video'" :aria-label="lang === 'cn' ? '视频作品预览' : 'Video portfolio preview'">
     <img
       class="skew-n"
       :src="img.thumb || 'https://cdn.jsdelivr.net/gh/xiliab/my-images@main/video_default_thumb.jpg'"
+      :alt="img.desc || currentCorner.ch"
+      loading="lazy"
+      decoding="async"
       @click="openModal('video', idx)"
     />
-    <span>▶</span>
+    <span aria-hidden="true">▶</span>
   </div>
 </div>
 
@@ -395,7 +401,7 @@ echo
 
       <div class="footer-content">
         <p style="text-align: center; font-size: 14px; color: #999;">
-    <a href="https://beian.miit.gov.cn" target="_blank">粤ICP备2025426060号</a> 
+    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">粤ICP备2025426060号</a> 
     <span style="margin: 0 12px;">|</span>
     <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001137" rel="noopener noreferrer" target="_blank" style="display: inline-flex; align-items: center; gap: 4px;">
       <img src="https://img.xiliab.online/uploads/备案图标.png" style="width: 14px; height: 14px; margin-right: 4px; vertical-align: middle;"> 粤公网安备44011802001137号</a>
@@ -484,7 +490,9 @@ echo
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
-<script src="{$assetsDir}/main.js?v={$lastEditTime}"></script>
+<script src='{$assetsDir}/data{$ext}.js?v={$v}'></script>
+<script src='{$assetsDir}/image-modal{$ext}.js?v={$v}'></script>
+<script src="{$assetsDir}/main{$ext}.js?v={$v}"></script>
 <!-- 多余 -->
 <!-- <script src="vue-2.6.11.min.js"></script> -->
 <!-- <script src="main.js" defer></script> -->
