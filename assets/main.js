@@ -9,6 +9,7 @@ const MAP_TILT_MAX = 8;
 const MAP_PERSPECTIVE = 900;
 let mapContainer = null;
 let mapInner = null;
+let rings = [];
 
 function getMapTiltMax() {
   return body.classList.contains('vertical') ? 5 : MAP_TILT_MAX;
@@ -35,18 +36,81 @@ function resetMapTilt() {
   updateMapTilt(0.5, 0.5);
 }
 
+let prevMx = 0.5, prevMy = 0.5;
+let ringIndex = 0;
+let lastRippleTs = 0;
+let mouseStopTimer = null;
+let rippleTimers = [];
+
+function triggerRipple() {
+  if (!rings.length) return;
+  const el = rings[ringIndex % rings.length];
+  ringIndex++;
+  el.classList.remove('play');
+
+  // 计算涟漪偏移方向（跟随地图倾斜）
+  const shiftX = (d.mX - 0.5) * 200; // 视差位移强度，基于 viewBox 单位
+  const shiftY = (d.mY - 0.5) * 200;
+  el.style.setProperty('--rx', `${shiftX}px`);
+  el.style.setProperty('--ry', `${shiftY}px`);
+
+  // 以鼠标的对称点为原点放大，实现涟漪朝向鼠标滑落的张力感
+  const originX = (1 - d.mX) * 100;
+  const originY = (1 - d.mY) * 100;
+  el.style.transformOrigin = `${originX}% ${originY}%`;
+
+  void el.getBoundingClientRect();
+  el.classList.add('play');
+}
+
+function clearRippleTimers() {
+  rippleTimers.forEach(t => clearTimeout(t));
+  rippleTimers = [];
+}
+
+let lastClientX = null;
+let lastClientY = null;
+
 function setMapPointerFromEvent(event) {
+  // 屏蔽由于 DOM 改变引起的幻影 mousemove 事件
+  if (event.clientX === lastClientX && event.clientY === lastClientY) {
+    return;
+  }
+  lastClientX = event.clientX;
+  lastClientY = event.clientY;
+
   const rect = mapContainer.getBoundingClientRect();
   const mx = (event.clientX - rect.left) / rect.width;
   const my = (event.clientY - rect.top) / rect.height;
   d.mX = Math.max(0, Math.min(1, mx));
   d.mY = Math.max(0, Math.min(1, my));
   updateMapTilt(d.mX, d.mY);
+
+  const vel = Math.abs(mx - prevMx) + Math.abs(my - prevMy);
+  prevMx = mx;
+  prevMy = my;
+
+  const isHoveringNode = event.target.closest('.corner-name') !== null;
+
+  // 只要走到这里，说明鼠标发生了物理位移，清除之前的定时器（移动中不触发）
+  if (mouseStopTimer) clearTimeout(mouseStopTimer);
+  clearRippleTimers();
+
+  // 只有当有实质性移动，且不在节点上时，才设定“停下”检测定时器
+  if (!isHoveringNode && vel > 0.001) {
+    mouseStopTimer = setTimeout(() => {
+      // 停下 150ms 后，连续触发 3 次涟漪，间隔不同
+      triggerRipple();
+      rippleTimers.push(setTimeout(triggerRipple, 600));
+      rippleTimers.push(setTimeout(triggerRipple, 1500));
+    }, 150);
+  }
 }
 
 function initMapTilt() {
   mapContainer = document.querySelector('.experience-map');
   mapInner = document.querySelector('.experience-map > .inner');
+  rings = Array.from(document.querySelectorAll('.ripple-ring'));
   if (!mapContainer || !mapInner) return;
 
   mapContainer.addEventListener('mousemove', setMapPointerFromEvent);
@@ -69,10 +133,8 @@ function initMapTilt() {
   mapContainer.addEventListener('touchcancel', resetMapTilt);
 }
 
-// 初始主题检测
-if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  root.classList.add('dark');
-}
+// 默认浅色模式
+// 如果需要，可以重新启用跟随系统：if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { root.classList.add('dark'); }
 
 const d = new Vue({
   el: '#app',
@@ -84,23 +146,15 @@ const d = new Vue({
     mY: 0,
     showModal: false,
     showAllCornerNames: false,
-    darkMode: window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    darkMode: false, // 默认浅色模式
     showCorner: false,
-    showSection: false,
-    showBridges: false,
-    showSections: false,
     currentCorner: null,
     scrollDistance: 0,
     cornerStart: 0,
     cornerEnd: 0,
-    sectionStart: 0,
-    sectionEnd: 0,
     currentImageIndex: 0,
     modalContent: "",
     modalType: "",
-    // 从全局数据对象中获取
-    sections: window.EXPERIENCE_DATA.sections,
-    bridges: window.EXPERIENCE_DATA.bridges,
     corners: window.EXPERIENCE_DATA.corners,
     aboutContent: "网页设计与开发：LLXiao<br/><br/><strong>联系</strong><br/>· 邮箱：xiliab@icloud.com<br/><br/><strong>关于本站</strong><br/>· 这是一个以交互式体验地图形式呈现的个人作品集。<br/>· SVG 赛道轨迹由我亲自绘制，覆盖 2012 年至今的 14 个成长节点。<br/>· 本站为纯静态页面，基于 Vue 2 + PHP 构建，未使用第三方建站工具。<br/><br/><strong>致谢</strong><br/>· 感谢 jjying、LXM、一言一语一直以来的支持与鼓励。",
   },
@@ -136,7 +190,9 @@ let isScrolling = false;
 let scrollAnimFrame = null;
 
 function getNodePositions() {
-  return d.corners.map((corner) => (corner.st + corner.ed) / 2);
+  const positions = d.corners.map((corner) => (corner.st + corner.ed) / 2);
+  positions.push(1.0); // Include the very end for the "Restart" button screen
+  return positions;
 }
 
 function getScrollMax() {
@@ -159,13 +215,17 @@ function getScrollDuration() {
  * 根据进度 p 获取当前节点索引（与 updateScrollDistance 一致，交界取后一段）
  */
 function getCurrentNodeIndex(p) {
-  let index = 0;
-  d.corners.forEach((corner, i) => {
-    if (p >= corner.st && p <= corner.ed) {
-      index = i;
+  let minDiff = Infinity;
+  let closestIndex = 0;
+  const positions = getNodePositions();
+  positions.forEach((pos, i) => {
+    const diff = Math.abs(pos - p);
+    if (diff < minDiff) {
+      minDiff = diff;
+      closestIndex = i;
     }
   });
-  return index;
+  return closestIndex;
 }
 
 function animateScrollTo(targetY, duration, onComplete) {
@@ -238,7 +298,6 @@ function onWheel(e) {
  */
 function updateScrollDistance() {
   d.showCorner = false;
-  d.showSection = false;
   d.currentCorner = null;
   
   let progress = window.scrollY / (body.scrollHeight - window.innerHeight);
@@ -247,6 +306,28 @@ function updateScrollDistance() {
 
   body.style.setProperty('--p', progress);
   d.p = progress;
+
+  // Mascot Follow & Rotate Logic
+  const trackPath = document.getElementById('track');
+  const mascotEl = document.getElementById('mascot');
+  if (trackPath && mascotEl) {
+    const totalLength = trackPath.getTotalLength();
+    const currentLength = progress * totalLength;
+    const pt = trackPath.getPointAtLength(currentLength);
+    
+    const prevPt = trackPath.getPointAtLength(Math.max(0, currentLength - 2));
+    const nextPt = trackPath.getPointAtLength(Math.min(totalLength, currentLength + 2));
+    const dx = nextPt.x - prevPt.x;
+    
+    if (dx < -0.1) {
+      window._mascotScaleX = -1;
+    } else if (dx > 0.1) {
+      window._mascotScaleX = 1;
+    }
+    const scaleX = window._mascotScaleX || 1;
+    
+    mascotEl.style.transform = `translate(${pt.x}px, ${pt.y}px) scaleX(${scaleX})`;
+  }
 
   // 检测当前所在的节点 (Corner)
   d.corners.forEach((corner) => {
@@ -258,14 +339,6 @@ function updateScrollDistance() {
     }
   });
 
-  // 检测当前所在的赛段 (Section)
-  d.sections.forEach((section) => {
-    if (progress >= section.st && progress <= section.ed) {
-      d.showSection = true;
-      d.sectionStart = section.st;
-      d.sectionEnd = section.ed;
-    }
-  });
 }
 
 /**

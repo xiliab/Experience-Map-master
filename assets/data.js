@@ -5,44 +5,15 @@
  *   company: 公司或学校名称
  *   de: 城市
  *   more: 详情 HTML
- * sections: 赛段数据（预留）
- * bridges: 桥梁数据（预留）
  */
 window.EXPERIENCE_DATA = {
-  sections: [
-    /*{
-      st: 0.0,
-      ed: 0.143,
-      x: 0.1,
-      y: 0.1,
-      h: "c",
-      v: "m",
-      ch: "\u8d5b\u6bb51",
-      company: "Section 1",
-      de: "Abschnitt 1"
-    }*/
-  ],
-  bridges: [
-    /*{
-      stx: 0.1,
-      sty: 0.1,
-      edx: 0.115,
-      edy: 0.12,
-      pt: 0.015,
-      x: 0.108,
-      y: 0.11,
-      h: "c",
-      v: "m",
-      ch: "\u6865\u68811"
-    }*/
-  ],
   corners: [
     {
       st: 0.0,
       ed: 0.01,
-      x: 0.051,
-      y: 0.349,
-      h: "c",
+      x: 0.5150,
+      y: 0.8830,
+      h: "l",
       v: "m",
       ch: "启程 · 广东工业大学",
       company: "广东工业大学",
@@ -64,9 +35,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.01,
       ed: 0.15,
-      x: 0.178,
-      y: 0.40,
-      h: "c",
+      x: 0.5820,
+      y: 0.6880,
+      h: "r",
       v: "m",
       ch: "机械设计师",
       company: "子律节能技术有限公司",
@@ -88,10 +59,10 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.15,
       ed: 0.22,
-      x: 0.316,
-      y: 0.794,
+      x: 0.7240,
+      y: 0.5510,
       h: "c",
-      v: "m",
+      v: "t",
       ch: "UI设计师",
       company: "朗岸文化公司",
       de: "广州",
@@ -113,9 +84,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.22,
       ed: 0.3,
-      x: 0.33,
-      y: 0.864,
-      h: "c",
+      x: 0.8800,
+      y: 0.4420,
+      h: "l",
       v: "m",
       ch: "高级UI设计师",
       company: "兆晶科技公司",
@@ -142,9 +113,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.3,
       ed: 0.365,
-      x: 0.67,
-      y: 0.97,
-      h: "c",
+      x: 0.8920,
+      y: 0.3140,
+      h: "r",
       v: "m",
       ch: "智能家居 · 新风系统",
       company: "兆晶科技公司",
@@ -178,9 +149,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.365,
       ed: 0.4,
-      x: 0.55,
-      y: 0.75,
-      h: "c",
+      x: 0.7900,
+      y: 0.2400,
+      h: "r",
       v: "m",
       ch: "设计经理",
       company: "金蓝盟公司",
@@ -202,9 +173,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.4,
       ed: 0.435,
-      x: 0.45,
-      y: 0.635,
-      h: "c",
+      x: 0.8300,
+      y: 0.1660,
+      h: "r",
       v: "m",
       ch: "企业学习 · 商学院",
       company: "金蓝盟公司",
@@ -248,10 +219,10 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.435,
       ed: 0.51,
-      x: 0.7,
-      y: 0.665,
+      x: 0.8000,
+      y: 0.0500,
       h: "c",
-      v: "m",
+      v: "b",
       ch: "业务线设计负责人",
       company: "三维家公司",
       de: "广州",
@@ -272,9 +243,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.51,
       ed: 0.58,
-      x: 0.76,
-      y: 0.44,
-      h: "c",
+      x: 0.5900,
+      y: 0.1600,
+      h: "l",
       v: "m",
       ch: "家装设计 · 三维家",
       company: "三维家公司",
@@ -292,16 +263,16 @@ window.EXPERIENCE_DATA = {
           author: "LLXiao",
           desc: "<strong>专业可信、技术驱动</strong><br/><span style='opacity:0.7;'>从“产品能力”到“服务对象”，逐步构建完整的信息路径，极大降低了设计门槛，优化了从方案设计到交付的整个决策流程。</span>"
         },
-        
+
       ],
     },
     {
       st: 0.58,
       ed: 0.72,
-      x: 0.84,
-      y: 0.3,
-      h: "c",
-      v: "m",
+      x: 0.1800,
+      y: 0.3050,
+      h: "l",
+      v: "t",
       ch: "设计负责人",
       company: "银光科技公司",
       de: "广州",
@@ -322,9 +293,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.72,
       ed: 0.8,
-      x: 0.78,
-      y: 0.04,
-      h: "c",
+      x: 0.1220,
+      y: 0.4750,
+      h: "l",
       v: "m",
       ch: "全渠道私域 · 微聊",
       company: "银光科技公司",
@@ -351,9 +322,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.8,
       ed: 0.88,
-      x: 0.56,
-      y: 0.18,
-      h: "c",
+      x: 0.2400,
+      y: 0.6400,
+      h: "l",
       v: "m",
       ch: "SCRM · 金桥",
       company: "银光科技公司",
@@ -370,9 +341,9 @@ window.EXPERIENCE_DATA = {
     {
       st: 0.88,
       ed: 0.94,
-      x: 0.33,
-      y: 0.06,
-      h: "c",
+      x: 0.3700,
+      y: 0.7700,
+      h: "l",
       v: "m",
       ch: "内容运营 · 栏目系统",
       company: "银光科技公司",
@@ -403,10 +374,10 @@ window.EXPERIENCE_DATA = {
     },
     {
       st: 0.94,
-      ed: 0.999,
-      x: 0.18,
-      y: 0.22,
-      h: "c",
+      ed: 0.98,
+      x: 0.5050,
+      y: 0.8200,
+      h: "l",
       v: "m",
       ch: "人生在继续，体验永不停",
       company: "下一段旅程",

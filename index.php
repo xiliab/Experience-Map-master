@@ -7,13 +7,13 @@ $ext = $debug ? "" : ".min";
 
 // 缓存策略：基于文件修改时间的 MD5 哈希
 $assets_files = $debug
-    ? ['assets/main.css', 'assets/data.js', 'assets/image-modal.js', 'assets/main.js']
-    : ['assets/main.min.css', 'assets/data.min.js', 'assets/image-modal.min.js', 'assets/main.min.js'];
+  ? ['assets/main.css', 'assets/data.js', 'assets/image-modal.js', 'assets/main.js']
+  : ['assets/main.min.css', 'assets/data.min.js', 'assets/image-modal.min.js', 'assets/main.min.js'];
 $hash_str = "";
 foreach ($assets_files as $f) {
-    if (file_exists(__DIR__ . '/' . $f)) {
-        $hash_str .= filemtime(__DIR__ . '/' . $f);
-    }
+  if (file_exists(__DIR__ . '/' . $f)) {
+    $hash_str .= filemtime(__DIR__ . '/' . $f);
+  }
 }
 $v = substr(md5($hash_str), 0, 8);
 $lastEditTime = $v; // 兼容旧变量名
@@ -22,7 +22,7 @@ $extraHead = "";
 $canonicalUrl = rtrim($siteUrl, '/') . '/';
 
 echo
-<<<HTML
+  <<<HTML
 <html lang="zh-Hans">
 	<head>
       <style>
@@ -63,212 +63,35 @@ echo
 <div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '']">
   <div class="experience-map">
     <div class="inner">
-      <svg viewBox="1 0 1000 1004" class="main-svg" width="10000px" height="10040px" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 2163 2552" class="ripple-svg" width="10000px" height="10040px" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
+        <g class="ripple-ring r1"><use href="#track"/></g>
+        <g class="ripple-ring r2"><use href="#track"/></g>
+        <g class="ripple-ring r3"><use href="#track"/></g>
+        <g class="ripple-ring r4"><use href="#track"/></g>
+        <g class="ripple-ring r5"><use href="#track"/></g>
+        <g class="ripple-ring r6"><use href="#track"/></g>
+      </svg>
+      <img src="{$assetsDir}/广州.webp" class="map-bg" alt="Map Background"/>
+      <svg viewBox="0 0 2163 2552" class="main-svg" width="10000px" height="10040px" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <path d="
-      M6,350
-      Q1,363 2,368
-      Q15,376.5 28,385
-      Q24.5,401 21,417
-      Q22,422 23,427
-      Q27.5,430.5 32,434
-      Q44.5,436.5 57,439
-      Q61,442.5 65,446
-      Q62.5,465.5 60,485
-      Q62,493 64,501
-      Q86.5,515 109,529
-      Q118.5,533 128,537
-      Q138.5,535.5 149,534
-      Q168,546 187,558
-      Q187,564 187,570
-      Q174.5,597 162,624
-      Q166.5,627.5 171,631
-      Q181.5,633.5 192,636
-      Q196,645.5 200,655
-      Q206.5,661.5 213,668
-      Q234,676.5 255,685
-      Q251.5,694 248,703
-      Q231,725 214,747
-      Q214.5,753 215,759
-      Q225,764 235,769
-      Q243.5,769.5 252,770
-      Q265.5,761.5 279,753
-      Q311,741.5 343,730
-      Q351,730 359,730
-      Q367.5,734 376,738
-      Q399,753.5 422,769
-      Q425,787.5 428,806
-      Q425,809 422,812
-      Q389,818 356,824
-      Q354,828.5 352,833
-      Q355.5,839 359,845
-      Q374,858 389,871
-      Q394.5,883 400,895
-      Q403.5,898 407,901
-      Q431.5,906.5 456,912
-      Q466.5,928.5 477,945
-      Q491.5,950.5 506,956
-      Q518.5,967 531,978
-      Q545.5,980.5 560,982
-      Q573,991 586,1000
-      Q592.5,1000 599,1000
-      Q609.5,994 620,988
-      Q626.5,981.5 633,975
-      Q633,970.5 633,966
-      Q621,951 609,936
-      Q592.5,928.5 576,921
-      Q560.5,897 545,873
-      Q544.5,868 544,863
-      Q551.5,862 559,861
-      Q560.5,856 562,851
-      Q540,814.5 519,778
-      Q503,765 487,752
-      Q482.5,740 478,728
-      Q477,718.5 476,709
-      Q498,698 520,687
-      Q533.5,657 547,627
-      Q569,628.5 591,630
-      Q606,624 621,618
-      Q642.5,614 664,610
-      Q678.5,617 693,624
-      Q714,621.5 735,619
-      Q751.5,628.5 768,638
-      Q776,638 784,638
-      Q789,624 794,610
-      Q806.5,603.5 819,597
-      Q821,588.5 823,580
-      Q830,571 837,562
-      Q832.5,547.5 828,533
-      Q834,522 840,511
-      Q839.5,492 839,473
-      Q846.5,474 854,475
-      Q861,489 868,503
-      Q879,503.5 890,504
-      Q900.5,509 911,514
-      Q916.5,509 922,504
-      Q923.5,497.5 925,491
-      Q921.5,478 918,465
-      Q922,452 926,439
-      Q922,432.5 919,425
-      Q913,421.5 907,418
-      Q906,415 905,412
-      Q910,396.5 915,381
-      Q913.5,374 912,367
-      Q907,361 902,356
-      Q894,353.5 886,351
-      Q883.5,343.5 881,336
-      Q876.5,330.5 872,325
-      Q861.5,322 851,319
-      Q843.5,311.5 836,304
-      Q825.5,300.5 815,297
-      Q809.5,285.5 804,274
-      Q789.5,266.5 775,259
-      Q774.5,257 774,255
-      Q781.5,247 789,239
-      Q793.5,224.5 798,210
-      Q816.5,208 835,206
-      Q842.5,197 850,188
-      Q862,186.5 874,185
-      Q886.5,172 899,159
-      Q904.5,159 910,159
-      Q920,164 930,169
-      Q936.5,166.5 943,164
-      Q950,157.5 957,151
-      Q961,132 966,113
-      Q982.5,90.5 999,68
-      Q995.5,56.5 992,45
-      Q991.5,33 991,21
-      Q950,2.5 938,0
-      Q930,2.5 922,5
-      Q887.5,8.5 853,12
-      Q840,8 827,4
-      Q779.5,8.5 732,13
-      Q724.5,24 717,35
-      Q704,44 691,53
-      Q685.5,65.5 680,78
-      Q671.5,85 663,92
-      Q660.5,102 658,112
-      Q644,114.5 630,117
-      Q624.5,132 619,147
-      Q612.5,149.5 606,152
-      Q599.5,150 593,148
-      Q581,138 569,128
-      Q557.5,138.5 546,149
-      Q540,146 534,143
-      Q528.5,132.5 523,122
-      Q513,114 503,106
-      Q504.5,84 506,62
-      Q504,52 502,42
-      Q498,38.5 494,35
-      Q483.5,32.5 473,30
-      Q461.5,38 450,46
-      Q439,42 428,39
-      Q418,47 408,55
-      Q394.5,57.5 381,60
-      Q377.5,62.5 374,65
-      Q366,82.5 358,100
-      Q359.5,113.5 361,127
-      Q359,131 357,135
-      Q347,143.5 337,151
-      Q329.5,161 322,171
-      Q309.5,176.5 297,182
-      Q287.5,199 278,216
-      Q262.5,219.5 247,223
-      Q238,232 229,241
-      Q221,245 213,249
-      Q209.5,258 206,267
-      Q198.5,273.5 191,280
-      Q187,289.5 183,299
-      Q158.5,308.5 134,318
-      Q118.5,315.5 103,313
-      Q83.5,322.5 64,332
-      Q48,330 32,328
-      Q22,335 12,342 Z" id="track"/>
+          <path d="M1117.0,2377.0 L1190.0,2394.0 1220.0,2474.0 1302.0,2493.0 1379.0,2546.0 1451.0,2502.0 1551.0,2533.0 1646.0,2451.0 1630.0,2280.0 1551.0,2110.0 1480.0,2067.0 1445.0,1968.0 1361.0,1938.0 1258.0,1784.0 1258.0,1665.0 1240.0,1575.0 1353.0,1506.0 1426.0,1515.0 1583.0,1411.0 1775.0,1483.0 1897.0,1506.0 1910.0,1396.0 2015.0,1371.0 2035.0,1333.0 1993.0,1285.0 2007.0,1081.0 1979.0,1016.0 2029.0,1016.0 2143.0,1075.0 2157.0,1000.0 2114.0,870.0 2062.0,775.0 1873.0,685.0 1775.0,585.0 1786.0,526.0 1687.0,458.0 1750.0,404.0 2089.0,224.0 2054.0,146.0 2077.0,89.0 2035.0,13.0 1836.0,6.0 1646.0,6.0 1543.0,95.0 1296.0,162.0 1277.0,206.0 1314.0,296.0 1240.0,411.0 1153.0,382.0 1117.0,336.0 992.0,365.0 796.0,296.0 709.0,445.0 616.0,469.0 584.0,544.0 433.0,639.0 433.0,725.0 34.0,760.0 6.0,815.0 52.0,948.0 169.0,994.0 215.0,1158.0 98.0,1320.0 78.0,1411.0 147.0,1531.0 328.0,1575.0 433.0,1575.0 456.0,1665.0 594.0,1763.0 639.0,1860.0 647.0,1948.0 796.0,1991.0 757.0,2043.0 998.0,2162.0 1064.0,2146.0 1147.0,2265.0 Z" id="track"/>
         </defs>
-        
-        <g class="section" :class=" showSection ? 'show' : 'hidden' " :style=" '--st:' + sectionStart + ';--ed:' + sectionEnd" >
-          <use href="#track" class="path"></use>
-        </g>
 
-        <use href="#track" class="base base2"/>
-
-        <g class="extras">
-          <!-- <path v-for="c in bridges" class="bridge" :d=" 'M' + w * c.stx + ' ' + h * c.sty + 'L' + w * c.edx + ' ' + h * c.edy"/> -->
-          <path class="bridge" d="M6 350 L-10 343" transform="translate(8, 4)"/>
-        </g>
-
-        <use href="#track" class="base"/>
+        <use href="#track" class="base-layer-1"/>
+        <use href="#track" class="base-layer-2"/>
 
         <g class="corner" :class=" showCorner ? 'show' : 'hidden' " :style=" '--st:' + cornerStart + ';--ed:' + cornerEnd" >
           <use href="#track" class="path"></use>
         </g>
 
-        <use href="#track" class="progress"/>
+        <use href="#track" class="active-layer"/>
+
+        <g id="mascot">
+          <image href="{$assetsDir}/mascot.png" x="-180" y="-180" width="360" height="360" />
+        </g>
       </svg>
-      <div class="all-names">
-  <div
-    v-for="corner in corners"
-    class="corner-name"
-    :class="[corner.h, corner.v, { show: currentCorner && corner.ch === currentCorner.ch }]"
-    :style="{'--x': corner.x, '--y': corner.y}"
-  >
-    <div><div>{{ corner.ch }}</div></div>
-  </div>
-</div>
-      <div v-for="c in bridges" class="corner-name bridge-name" :class="[ (c.pt < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.pt - 0.001 < p && p < c.pt + 0.001 ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP(c.pt)">
-        <div>
-            <div>
-              {{c.ch}}
-            </div>
-        </div>
-      </div>
-      <div v-for="c in sections" class="corner-name section-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '']" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP((c.st + c.ed) / 2)">
-        <div>
-            <div>
-              {{c.ch}}
-            </div>
-        </div>
-      </div>
+
+
       <div v-for="c in corners" class="corner-name" :class="[ (c.st < p) || showAllCornerNames ? 'show' : 'hidden', c.h, c.v, c.st < p && p < c.ed ? 'highlighted' : '' ]" :style=" '--x:' + c.x + ';--y:' + c.y " @click="setP( (c.st + c.ed) / 2)">
         <div>
             <div>
