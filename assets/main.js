@@ -291,10 +291,25 @@ function goToNodeIndex(index) {
 
 function onWheel(e) {
   if (d.showModal) return;
+
+  const descEl = e.target.closest('.desc');
+  if (descEl) {
+    const isAtTop = descEl.scrollTop === 0;
+    const isAtBottom = descEl.scrollTop + descEl.clientHeight >= descEl.scrollHeight - 1;
+    const canScroll = descEl.scrollHeight > descEl.clientHeight;
+    
+    if (canScroll) {
+      if ((isAtTop && e.deltaY < 0) || (isAtBottom && e.deltaY > 0)) {
+        // Boundary reached -> intercept to map
+      } else {
+        // Has space to scroll -> allow native
+        return;
+      }
+    }
+  }
+
   if (Math.abs(e.deltaY) < 10) return;
-
   e.preventDefault();
-
   if (isScrolling) return;
 
   const currentIndex = getCurrentNodeIndex(d.p);
@@ -302,9 +317,69 @@ function onWheel(e) {
   goToNodeIndex(nextIndex);
 }
 
+let touchStartY = 0;
+let touchMode = null;
+let initialDescEl = null;
+
+window.addEventListener("touchstart", (e) => {
+  touchStartY = e.touches[0].clientY;
+  initialDescEl = e.target.closest('.desc');
+  touchMode = null;
+}, { passive: true });
+
+window.addEventListener("touchmove", (e) => {
+  if (d.showModal) return;
+  
+  const currentY = e.touches[0].clientY;
+  const deltaY = touchStartY - currentY;
+  
+  // Decide scroll mode on first significant move
+  if (touchMode === null && Math.abs(deltaY) > 1) {
+    if (initialDescEl) {
+      const isAtTop = initialDescEl.scrollTop <= 0;
+      const isAtBottom = initialDescEl.scrollTop + initialDescEl.clientHeight >= initialDescEl.scrollHeight - 1;
+      const canScroll = initialDescEl.scrollHeight > initialDescEl.clientHeight;
+      
+      if (canScroll) {
+        if ((isAtTop && deltaY < 0) || (isAtBottom && deltaY > 0)) {
+          touchMode = 'map_scroll';
+        } else {
+          touchMode = 'desc_scroll';
+        }
+      } else {
+        touchMode = 'map_scroll';
+      }
+    } else {
+      touchMode = 'map_scroll';
+    }
+  }
+  
+  if (touchMode === 'desc_scroll') {
+    touchStartY = currentY;
+    return;
+  }
+  
+  if (touchMode === 'map_scroll') {
+    e.preventDefault();
+    
+    if (isScrolling) return;
+    
+    const swipeThreshold = 20; // 触发翻页的滑动阈值
+    if (Math.abs(deltaY) > swipeThreshold) {
+      const currentIndex = getCurrentNodeIndex(d.p);
+      const nextIndex = deltaY > 0 ? currentIndex + 1 : currentIndex - 1;
+      goToNodeIndex(nextIndex);
+      // 重置起始点，避免动画结束后原地重复触发
+      touchStartY = currentY;
+    }
+  }
+}, { passive: false });
+
 /**
  * 更新滚动进度及关联状态
  */
+let lastActiveCorner = null;
+
 function updateScrollDistance() {
   d.showCorner = false;
   d.currentCorner = null;
@@ -342,14 +417,22 @@ function updateScrollDistance() {
   }
 
   // 检测当前所在的节点 (Corner)
+  let foundCorner = null;
   d.corners.forEach((corner) => {
     if (progress >= corner.st && progress <= corner.ed) {
       d.showCorner = true;
       d.cornerStart = corner.st;
       d.cornerEnd = corner.ed;
       d.currentCorner = corner;
+      foundCorner = corner;
     }
   });
+
+  if (lastActiveCorner !== foundCorner) {
+    lastActiveCorner = foundCorner;
+    const descEl = document.querySelector('.desc');
+    if (descEl) descEl.scrollTop = 0;
+  }
 
 }
 

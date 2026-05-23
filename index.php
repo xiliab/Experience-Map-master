@@ -188,13 +188,13 @@ echo
       <div class="inner skew-n">
 
       <div class="footer-content">
-        <p style="text-align: center; font-size: 14px; color: #999;">
-    <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">粤ICP备2025426060号</a> 
-    <span style="margin: 0 12px;">|</span>
-    <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001137" rel="noopener noreferrer" target="_blank" style="display: inline-flex; align-items: center; gap: 4px;">
-      <img src="https://img.xiliab.online/uploads/备案图标.png" style="width: 14px; height: 14px; margin-right: 4px; vertical-align: middle;"> 粤公网安备44011802001137号</a>
-  </p>
-    </div>
+        <p class="record-text" style="text-align: center; font-size: 14px; color: #999; white-space: nowrap; margin: 0;">
+          <a href="https://beian.miit.gov.cn" target="_blank" rel="noopener noreferrer">粤ICP备2025426060号</a> 
+          <span style="margin: 0 6px;">|</span>
+          <a href="https://beian.mps.gov.cn/#/query/webSearch?code=44011802001137" rel="noopener noreferrer" target="_blank" style="display: inline-flex; align-items: center; gap: 2px;">
+            <img src="https://img.xiliab.online/uploads/备案图标.png" style="width: 14px; height: 14px; vertical-align: middle;"> <span class="hide-vertical">粤公网安备</span>44011802001137号</a>
+        </p>
+      </div>
 
         <div @click="openAbout" role="button" class="link">
           关于本站
