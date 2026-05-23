@@ -113,7 +113,16 @@ function initMapTilt() {
   rings = Array.from(document.querySelectorAll('.ripple-ring'));
   if (!mapContainer || !mapInner) return;
 
-  mapContainer.addEventListener('mousemove', setMapPointerFromEvent);
+  let mouseTicking = false;
+  mapContainer.addEventListener('mousemove', function(e) {
+    if (!mouseTicking) {
+      window.requestAnimationFrame(() => {
+        setMapPointerFromEvent(e);
+        mouseTicking = false;
+      });
+      mouseTicking = true;
+    }
+  }, { passive: true });
   mapContainer.addEventListener('mouseleave', resetMapTilt);
 
   let ticking = false;
@@ -311,7 +320,10 @@ function updateScrollDistance() {
   const trackPath = document.getElementById('track');
   const mascotEl = document.getElementById('mascot');
   if (trackPath && mascotEl) {
-    const totalLength = trackPath.getTotalLength();
+    if (!window.cachedTrackLength) {
+      window.cachedTrackLength = trackPath.getTotalLength();
+    }
+    const totalLength = window.cachedTrackLength;
     const currentLength = progress * totalLength;
     const pt = trackPath.getPointAtLength(currentLength);
     
@@ -356,7 +368,16 @@ function updatePageHeight() {
 
 // 事件监听
 window.addEventListener("wheel", onWheel, { passive: false });
-window.addEventListener('scroll', updateScrollDistance);
+let scrollTicking = false;
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      updateScrollDistance();
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
 window.addEventListener('resize', () => {
   updateScrollDistance();
   updatePageHeight();

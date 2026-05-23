@@ -34,7 +34,7 @@ echo
   </style>
     <meta charset="UTF-8">
     <title>LLXiao — 体验地图 | 用户体验设计作品集</title>
-    <meta name="robots" content="noodp"/>
+    <meta name="robots" content="index, follow"/>
     <meta name="author" content="LLXiao" />
     <meta name="description" content="十四年用户体验设计实践，从机械工程到B端复杂系统，用设计驱动产品价值增长。交互式地图呈现完整职业历程与作品集。"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
@@ -61,7 +61,7 @@ echo
 	</head>
 <body>
 <div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '']">
-  <div class="experience-map">
+  <main class="experience-map">
     <div class="inner">
       <svg viewBox="0 0 2163 2552" class="ripple-svg" width="10000px" height="10040px" xmlns="http://www.w3.org/2000/svg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
         <g class="ripple-ring r1"><use href="#track"/></g>
@@ -71,7 +71,7 @@ echo
         <g class="ripple-ring r5"><use href="#track"/></g>
         <g class="ripple-ring r6"><use href="#track"/></g>
       </svg>
-      <img src="{$assetsDir}/广州.webp" class="map-bg" alt="Map Background"/>
+      <img src="{$assetsDir}/广州.webp" class="map-bg" alt="广州体验地图背景" fetchpriority="high" />
       <svg viewBox="0 0 2163 2552" class="main-svg" width="10000px" height="10040px" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <path d="M1117.0,2377.0 L1190.0,2394.0 1220.0,2474.0 1302.0,2493.0 1379.0,2546.0 1451.0,2502.0 1551.0,2533.0 1646.0,2451.0 1630.0,2280.0 1551.0,2110.0 1480.0,2067.0 1445.0,1968.0 1361.0,1938.0 1258.0,1784.0 1258.0,1665.0 1240.0,1575.0 1353.0,1506.0 1426.0,1515.0 1583.0,1411.0 1775.0,1483.0 1897.0,1506.0 1910.0,1396.0 2015.0,1371.0 2035.0,1333.0 1993.0,1285.0 2007.0,1081.0 1979.0,1016.0 2029.0,1016.0 2143.0,1075.0 2157.0,1000.0 2114.0,870.0 2062.0,775.0 1873.0,685.0 1775.0,585.0 1786.0,526.0 1687.0,458.0 1750.0,404.0 2089.0,224.0 2054.0,146.0 2077.0,89.0 2035.0,13.0 1836.0,6.0 1646.0,6.0 1543.0,95.0 1296.0,162.0 1277.0,206.0 1314.0,296.0 1240.0,411.0 1153.0,382.0 1117.0,336.0 992.0,365.0 796.0,296.0 709.0,445.0 616.0,469.0 584.0,544.0 433.0,639.0 433.0,725.0 34.0,760.0 6.0,815.0 52.0,948.0 169.0,994.0 215.0,1158.0 98.0,1320.0 78.0,1411.0 147.0,1531.0 328.0,1575.0 433.0,1575.0 456.0,1665.0 594.0,1763.0 639.0,1860.0 647.0,1948.0 796.0,1991.0 757.0,2043.0 998.0,2162.0 1064.0,2146.0 1147.0,2265.0 Z" id="track"/>
@@ -121,11 +121,11 @@ echo
         </div>
       </div>
     </div>
-  </div>
-  <div class="desc skew-p">
+  </main>
+  <aside class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <span class="title-font">L<span></span>LXiao<span></span>的体验地图</span>
+        <h1 class="title-font">L<span></span>LXiao<span></span>的体验地图</h1>
         <img src="{$assetsDir}/logo.svg" alt="LLXiao的体验地图"/>
       </div>
     </div>
@@ -212,10 +212,10 @@ echo
 
       </div>
     </div>
-  </div>
+  </aside>
 
   <div class="modal text" :class="[showModal && modalType == 'text' ? 'show' : '']" @click="showModal = false">
-    <div class="inner" @click="innerModal(event)">
+    <div class="inner" @click.stop>
       <div class="modal-content skew-n" v-html="modalContent" @click="showModal = false"></div>
       <div class="modal-close skew-n" @click="showModal = false">
         <svg viewBox="0 0 30 30">
@@ -226,46 +226,15 @@ echo
     </div>
   </div>
 
-  <div
-  class="modal"
-  :class="[
-    showModal && (modalType == 'image' || modalType == 'video') ? 'show' : '',
-    modalType
-  ]"
-  @click="showModal = false"
->
-  <div class="inner" @click="innerModal(event)">
-    <div class="modal-content skew-n" v-html="modalContent"></div>
-    <div class="modal-close skew-n" @click="showModal = false">
-      <svg viewBox="0 0 30 30">
-        <circle cx="15" cy="15" r="12"/>
-        <path d="M10 10L20 20M20 10L10 20"/>
-      </svg>
-    </div>
-  </div>
-</div>
+
 <!-- 图片/视频弹窗（image-modal 组件） -->
 <image-modal
   v-if="showModal && (modalType === 'image' || modalType === 'video')"
   :images="currentCorner.imgs"
   :initial-index="currentImageIndex"
   @close="showModal = false"
-/>
-<div
-  v-if="showModal && modalType === 'text'"
-  class="modal-bg"
-  style="position:fixed;left:0;top:0;width:100vw;height:100vh;background:rgba(0,0,0,.7);z-index:10000;display:flex;align-items:center;justify-content:center;">
-  <div class="modal-content"
-    style="background:#fff;padding:32px 40px 32px 40px;border-radius:16px;box-shadow:0 8px 32px rgba(0,0,0,0.25);max-width:80vw;max-height:80vh;overflow:auto;display:flex;flex-direction:column;align-items:center;">
-    <div v-html="modalContent" style="font-size:17px;color:#222;"></div>
-    <button
-      @click="showModal = false"
-      style="margin-top: 32px; padding: 8px 36px; font-size:18px; border:none; border-radius:6px; background:#444; color:#fff; cursor:pointer;">
-      关闭
-    </button>
-  </div>
-</div>
-</div>
+></image-modal>
+
   <div class="all-names title-font"><template v-for="c in corners" >{{c.ch}} <template v-if="c.nk && c.ch != c.nk">{{c.nk}} </template></template> </div>
 </div>
 <script src='{$assetsDir}/vue-2.6.11.min.js'></script>
