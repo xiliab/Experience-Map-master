@@ -188,6 +188,11 @@ const d = new Vue({
       this.currentImageIndex = idx;
       this.showModal = true;
     },
+    openProjectModal(idx = 0) {
+      this.modalType = 'project';
+      this.currentImageIndex = idx;
+      this.showModal = true;
+    },
     openAbout() {
       this.modalContent = this.aboutContent;
       this.openModal('text');

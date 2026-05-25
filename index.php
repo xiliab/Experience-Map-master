@@ -156,8 +156,31 @@ echo
           </div>
         </div>
       </div>
-      <div class="thumbs" v-if="currentCorner && currentCorner.imgs" v-cloak>
- <div class="thumb" v-for="(img, idx) in currentCorner.imgs" :key="img.src">
+      <div class="stats-row" v-if="currentCorner && currentCorner.stats" v-cloak>
+        <div class="stat-item skew-n" v-for="(stat, idx) in currentCorner.stats" :key="idx">
+          <div class="stat-icon" v-html="stat.icon"></div>
+          <div class="stat-info">
+            <div class="stat-value title-font">{{ stat.val }}<span class="stat-unit">{{ stat.unit }}</span></div>
+            <div class="stat-label">{{ stat.label }}</div>
+          </div>
+          <div class="stat-divider" v-if="idx !== currentCorner.stats.length - 1"></div>
+        </div>
+      </div>
+      <div class="thumbs project-thumbs" v-if="currentCorner && currentCorner.projects" v-cloak>
+        <div class="thumb project-thumb" v-for="(project, idx) in currentCorner.projects" :key="project.title" @click="openProjectModal(idx)">
+  <img
+    class="skew-n"
+    :src="project.thumb"
+    :alt="project.title"
+    loading="lazy"
+    decoding="async"
+  />
+  <div class="project-thumb-title skew-n">{{ project.title }}</div>
+</div>
+
+</div>
+      <div class="thumbs" v-else-if="currentCorner && currentCorner.imgs" v-cloak>
+        <div class="thumb" v-for="(img, idx) in currentCorner.imgs" :key="img.src">
   <img
     v-if="!img.type || img.type === 'image'"
     class="skew-n"
@@ -229,8 +252,8 @@ echo
 
 <!-- 图片/视频弹窗（image-modal 组件） -->
 <image-modal
-  v-if="showModal && (modalType === 'image' || modalType === 'video')"
-  :images="currentCorner.imgs"
+  v-if="showModal && (modalType === 'image' || modalType === 'video' || modalType === 'project')"
+  :images="currentCorner ? (currentCorner.projects || currentCorner.imgs) : []"
   :initial-index="currentImageIndex"
   @close="showModal = false"
 ></image-modal>

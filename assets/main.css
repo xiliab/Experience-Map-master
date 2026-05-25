@@ -896,6 +896,24 @@ body.is-node-scrolling #mascot {
   transform-origin: 50% 50%;
 }
 
+.project-thumb-title {
+  position: absolute;
+  left: .35em;
+  right: .35em;
+  bottom: .35em;
+  z-index: 2;
+  padding: .25em .35em;
+  border-radius: .25em .1em .25em .1em;
+  background: rgba(0, 0, 0, .64);
+  color: #fff;
+  font-size: .65rem;
+  line-height: 1.2;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 /* ~Controls */
 .controls {
   font-size: calc(.75rem + .05vmax + .1vmin);
@@ -1306,4 +1324,112 @@ body.is-node-scrolling #mascot {
   background-color: #000;
   padding: 4px;
   display: inline-block;
+}
+
+/* Stats Data Visualization (Job Nodes) */
+.stats-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 24px;
+  margin-top: 30px;
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding-bottom: 8px; /* For potential scrollbar spacing */
+}
+.stats-row::-webkit-scrollbar {
+  display: none;
+}
+.stat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 0 0 auto;
+}
+.stat-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+  color: #0284c7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  box-shadow: none;
+  border: 1px solid #fff;
+}
+.stat-icon img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: contain;
+  border-radius: inherit;
+}
+.dark .stat-icon {
+  background: linear-gradient(135deg, #1e3a8a 0%, #172554 100%);
+  color: #60a5fa;
+  box-shadow: none;
+  border-color: #999;
+}
+.stat-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.stat-value {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--text1);
+  display: flex;
+  align-items: baseline;
+}
+.stat-unit {
+  font-size: 1rem;
+  font-weight: normal;
+  margin-left: 4px;
+  color: var(--text1);
+}
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text2);
+  margin-top: 6px;
+  font-weight: 500;
+}
+.stat-divider {
+  display: none;
+  width: 1px;
+  height: 36px;
+  background: linear-gradient(to bottom, transparent, var(--bg3), transparent);
+  margin-left: 24px;
+}
+@media (max-width: 800px) {
+  .stats-row {
+    gap: 16px;
+    margin-top: 24px;
+  }
+  .stat-item {
+    gap: 10px;
+  }
+  .stat-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 20px;
+  }
+  .stat-value {
+    font-size: 1.6rem;
+  }
+  .stat-unit {
+    font-size: 0.85rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+  }
+  .stat-divider {
+    height: 28px;
+    margin-left: 16px;
+  }
 }
