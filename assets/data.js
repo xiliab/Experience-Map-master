@@ -19,18 +19,6 @@ window.EXPERIENCE_DATA = {
       company: "广东工业大学",
       de: "广州",
       more: "2012 年，我从广东工业大学材料与能源学院毕业，获工学学士学位。四年理工科训练塑造了我的系统思维能力，也为后来转向用户体验设计埋下了种子——用工程思维理解技术，用设计思维触达人心。",
-      imgs: [
-        {
-          src: "https://img.xiliab.online/uploads/my_biye.jpg",
-          author: "LLXiao",
-          desc: "广东工业大学工学学士毕业证书"
-        },
-        {
-          src: "https://img.xiliab.online/uploads/my_xuewei.jpg",
-          author: "LLXiao",
-          desc: "广东工业大学工学学士学位证书"
-        },
-      ],
     },
     {
       st: 0.01,
@@ -40,7 +28,7 @@ window.EXPERIENCE_DATA = {
       h: "r",
       v: "m",
       ch: "机械设计师",
-      company: "子律节能技术有限公司",
+      company: "子律",
       de: "广州",
       more: "以实地测绘数据为基础，在 UG 中完成三维建模与工程出图，跟进生产全流程以确保制造精度，并通过数据驱动的迭代持续优化设计方案。这段工程实践让我深入理解了产品从概念到落地的完整链路，也积累了宝贵的跨领域协作经验。",
       stats: [
@@ -57,7 +45,7 @@ window.EXPERIENCE_DATA = {
       h: "c",
       v: "t",
       ch: "UI设计师",
-      company: "朗岸文化公司",
+      company: "朗岸",
       de: "广州",
       more: "负责产品界面视觉设计、组件规范制定与多端适配，与产品和开发团队协作推动设计方案高效落地。这一阶段我系统性地建立了自己的设计方法论——从视觉执行走向体验思维。",
       stats: [
@@ -74,9 +62,9 @@ window.EXPERIENCE_DATA = {
       h: "l",
       v: "m",
       ch: "高级UI设计师",
-      company: "兆晶科技公司",
+      company: "兆晶",
       de: "广州",
-      more: "主导兆晶科技全线产品的用户体验设计与视觉方案，完成从产品流程规划到高保真输出的全流程设计。其中新风机手机端控制界面，将复杂设备操作转化为直观交互，显著提升了产品易用性与用户满意度。同时深度参与了品牌视觉体系的构建，包括品牌标志设计与 VI 规范制定。",
+      more: "主导兆晶全线产品的用户体验设计与视觉方案，完成从产品流程规划到高保真输出的全流程设计。其中新风机手机端控制界面，将复杂设备操作转化为直观交互，显著提升了产品易用性与用户满意度。同时深度参与了品牌视觉体系的构建，包括品牌标志设计与 VI 规范制定。",
       stats: [
         { val: "3", unit: "+", label: "核心项目", icon: "<img src='assets/核心项目.webp' alt='核心项目' loading='lazy' decoding='async' />" },
         { val: "2", unit: "+", label: "设计体系", icon: "<img src='assets/设计体系.webp' alt='设计体系' loading='lazy' decoding='async' />" },
@@ -98,7 +86,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "智能家居 · 新风系统",
           subtitle: "面向家庭空气管理场景，将新风设备参数与控制流程转化为清晰、低学习成本的移动端体验。",
-          company: "兆晶科技公司",
+          company: "兆晶",
           meta: ["C端", "智能硬件", "微信小程序"],
           thumb: "https://img.xiliab.online/uploads/xinfeng_scene_01.jpg",
           article: `
@@ -147,7 +135,7 @@ window.EXPERIENCE_DATA = {
       h: "r",
       v: "m",
       ch: "设计经理",
-      company: "金蓝盟公司",
+      company: "金蓝盟",
       de: "广州",
       more: "主导产品前期的战略定位与需求分析，输出高质量的交互方案与界面视觉；同时负责设计团队管理与新人培养，把控设计产出质量与项目进度。从执行者到管理者，我开始用更宏观的视角理解产品价值与设计策略的关系。",
       stats: [
@@ -164,7 +152,7 @@ window.EXPERIENCE_DATA = {
       h: "c",
       v: "b",
       ch: "业务线设计负责人",
-      company: "三维家公司",
+      company: "三维家",
       de: "广州",
       more: "带领约十人的 UED 团队，负责公司平台产品部的全盘设计工作。通过优化团队工作流与设计规范，系统性提升设计效率与输出质量；与业务部门深度协作，打通产品设计流程中的关键瓶颈，推动用户体验成为产品决策的核心要素之一。",
       stats: [
@@ -188,7 +176,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "企业学习 · 商学院",
           subtitle: "面向企业学习平台，系统识别体验问题并沉淀量化迭代依据，支持课程与学习流程优化。",
-          company: "金蓝盟公司",
+          company: "金蓝盟",
           meta: ["B端", "企业学习", "平台体验"],
           thumb: "https://img.xiliab.online/uploads/JLM_sxy_06.jpg",
           article: `
@@ -242,7 +230,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "家装设计 · 三维家",
           subtitle: "面向家装设计工具，梳理从方案创建到展示交付的任务路径，支持专业设计流程连续推进。",
-          company: "三维家公司",
+          company: "三维家",
           meta: ["B端", "设计工具", "3D可视化"],
           thumb: "https://img.xiliab.online/uploads/3VJ_web.jpg",
           article: `
@@ -273,7 +261,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "全渠道私域 · 微聊",
           subtitle: "面向全渠道客服与私域运营场景，梳理获客到成交的协作链路，支持多角色高效沟通。",
-          company: "银光科技公司",
+          company: "银光",
           meta: ["B端", "CRM", "客服系统"],
           thumb: "https://img.xiliab.online/uploads/YG_wl_16.jpg",
           article: `
@@ -314,7 +302,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "SCRM · 金桥",
           subtitle: "面向私域电商销售场景，整合多平台客户数据与企微侧边栏信息，支持跟进决策。",
-          company: "银光科技公司",
+          company: "银光",
           meta: ["B端", "SCRM", "私域电商"],
           thumb: "https://img.xiliab.online/uploads/YG_jq_home.jpg",
           article: `
@@ -352,9 +340,9 @@ window.EXPERIENCE_DATA = {
       h: "l",
       v: "t",
       ch: "设计负责人",
-      company: "银光科技公司",
+      company: "银光",
       de: "广州",
-      more: "主导银光科技全线产品的用户体验设计，覆盖客户端、手机端与管理后台三大用户端。建立跨平台组件规范体系，提升产品一致性与设计交付效率。其中企业微信赋能营销平台已助力超百家企业客户实现业务增长，获得市场广泛认可。",
+      more: "主导银光全线产品的用户体验设计，覆盖客户端、手机端与管理后台三大用户端。建立跨平台组件规范体系，提升产品一致性与设计交付效率。其中企业微信赋能营销平台已助力超百家企业客户实现业务增长，获得市场广泛认可。",
       stats: [
         { val: "1", unit: "+", label: "设计体系", icon: "<img src='assets/设计体系.webp' alt='设计体系' loading='lazy' decoding='async' />" },
         { val: "3", unit: "+", label: "业务增长", icon: "<img src='assets/业务增长.webp' alt='业务增长' loading='lazy' decoding='async' />" },
@@ -376,7 +364,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "AI托管 · 智能客服接待",
           subtitle: "面向企业客服接待场景，将权限说明、AI 回复机制与人工接管组织为可控、可信的智能服务体验。",
-          company: "银光科技公司",
+          company: "银光",
           meta: ["AI产品", "智能客服", "人机协同"],
           thumb: "https://img.xiliab.online/uploads/ai-tuoguan-access-overview.jpg",
           article: `
@@ -418,7 +406,7 @@ window.EXPERIENCE_DATA = {
         {
           title: "内容运营 · 栏目系统",
           subtitle: "面向私域内容运营场景，通过自动邀约与行为追踪，推动视频完播率提升 21%、员工工作量降低 38%。",
-          company: "银光科技公司",
+          company: "银光",
           meta: ["AI / 自动化", "私域运营", "数据追踪"],
           thumb: "https://img.xiliab.online/uploads/YG_lanmu_01.jpg",
           article: `
@@ -473,11 +461,132 @@ window.EXPERIENCE_DATA = {
       company: "下一段旅程",
       de: "广州",
       more: "交互不止于屏幕，人生亦是界面。一念起，万相动。<br/>每个当下，都是一次设计；每段经历，都是一种体验。<br/>用设计的心去生活，用生活的感去做设计。",
-      imgs: [
+      projects: [
         {
-          src: "https://img.xiliab.online/uploads/keep_going_myself.jpg",
-          author: "LLXiao",
-          desc: "<strong>继续前行</strong>",
+          title: "继续前行 · 体验永不停",
+          subtitle: "把生活经验、设计观察与长期实践继续放回真实世界，在新的阶段持续更新对体验的理解。",
+          company: "下一段旅程",
+          meta: ["个人成长", "体验观察", "持续实践"],
+          thumb: "https://img.xiliab.online/uploads/keep_going_myself.jpg",
+          article: `
+<strong>[阶段思考]</strong> 设计经验不是停留在某个项目节点上的结论，而是在不断变化的生活、技术和组织环境里持续被校准。进入新的阶段后，我更关注体验如何跨越屏幕、设备和工作流程，回到人与场景本身。<br/><br/>
+<strong>[设计目标]</strong> 保持对真实问题的敏感度，把过往在机械工程、智能硬件、B端复杂系统和自动化产品中的方法沉淀为可迁移的判断力，并继续用设计帮助复杂系统变得更清晰、更可用。<br/><br/>
+<div class="case-summary" aria-label="继续前行的设计方向">
+  <div><strong>持续观察</strong><span>从日常使用、团队协作和业务流程里发现体验问题。</span></div>
+  <div><strong>系统思考</strong><span>把界面、流程、角色和技术能力放在同一张图里理解。</span></div>
+  <div><strong>实践更新</strong><span>让每一次项目复盘都转化为下一次设计判断。</span></div>
+</div>
+<strong>[关键行动]</strong><br/>
+• <strong>保持跨领域视角：</strong>继续连接工程思维、产品策略与体验设计，在复杂问题中寻找可执行的路径。<br/>
+• <strong>关注真实场景：</strong>不只看界面是否完成，更关注用户在具体任务中是否能理解、判断并顺利推进。<br/>
+• <strong>沉淀设计方法：</strong>把项目中的流程梳理、信息分层和反馈机制整理为可复用的经验。<br/><br/>
+<div class="case-callout"><strong>继续前行：</strong>人生还在展开，体验也不会停止。每一个新的问题，都是重新理解人与系统关系的入口。</div><br/>
+<strong>[阶段价值]</strong> 这篇内容作为体验地图的收束，也指向下一段旅程：继续用设计的心去生活，用生活的感受反哺设计实践。
+`,
+          media: [
+            {
+              src: "https://img.xiliab.online/uploads/keep_going_myself.jpg",
+              author: "LLXiao",
+              desc: "<strong>继续前行</strong><br/><span style='opacity:0.7;'>在新的阶段继续观察生活、理解系统、打磨体验，把每一次经历都转化为下一次设计判断的养分。</span>"
+            },
+          ],
+        },
+        {
+          title: "加载动画 · 等待中的品牌反馈",
+          subtitle: "通过动效节奏、状态反馈与品牌识别，让系统等待时间更可感知、更有秩序。",
+          company: "金蓝盟",
+          meta: ["动效设计", "加载反馈", "品牌体验"],
+          thumb: "https://img.xiliab.online/uploads/JLM_donghua.gif",
+          article: `
+<strong>[项目挑战]</strong> 加载状态如果只停留在静态提示，用户很难判断系统是否仍在响应，也容易把短暂等待理解为卡顿或失败。尤其在企业平台中，等待反馈需要同时兼顾效率感、稳定感和品牌识别。<br/><br/>
+<strong>[设计目标]</strong> 用加载动画承接系统处理中状态，让等待过程具备明确反馈和视觉节奏，同时通过图形语言强化品牌记忆，而不是把动效做成单纯装饰。<br/><br/>
+<div class="case-flow" aria-label="加载动画体验路径">
+  <span>触发操作</span><i></i><span>系统处理</span><i></i><span>动效反馈</span><i></i><span>状态完成</span>
+</div>
+<strong>[关键行动]</strong><br/>
+• <strong>等待状态可感知：</strong>通过持续运动告诉用户系统仍在处理，降低等待中的不确定感。<br/>
+• <strong>动效节奏控制：</strong>让动画循环保持轻量、稳定和可预期，避免过强动感干扰用户任务。<br/>
+• <strong>品牌元素融入：</strong>把品牌视觉特征放入加载反馈中，让功能状态也成为品牌体验的一部分。<br/><br/>
+<div class="case-summary" aria-label="加载动画设计策略">
+  <div><strong>明确反馈</strong><span>帮助用户判断系统没有中断。</span></div>
+  <div><strong>节奏克制</strong><span>用轻量循环维持等待秩序。</span></div>
+  <div><strong>品牌记忆</strong><span>让状态反馈承载品牌识别。</span></div>
+</div>
+<strong>[成果与价值]</strong> 该动效把等待过程从空白状态转化为可理解的系统反馈，增强了产品在细节层面的完整度和品牌一致性。
+`,
+          media: [
+            {
+              src: "https://img.xiliab.online/uploads/JLM_donghua.gif",
+              author: "LLXiao",
+              desc: "<strong>加载动画反馈</strong><br/><span style='opacity:0.7;'>通过持续、克制的动效节奏提示系统正在处理，同时让品牌识别自然进入等待状态。</span>"
+            },
+          ],
+        },
+        {
+          title: "企业IP角色 · 品牌人格延展",
+          subtitle: "围绕企业品牌识别与传播场景，设计可延展、可应用的 IP 角色形象。",
+          company: "三维家",
+          meta: ["品牌设计", "IP角色", "视觉延展"],
+          thumb: "https://img.xiliab.online/uploads/3vj_jxw_ww.jpg",
+          article: `
+<strong>[项目挑战]</strong> 企业品牌在产品、运营和传播场景中需要更具亲和力的视觉载体。单纯依赖标志和标准色，很难在复杂触点中形成稳定、可记忆的品牌人格。<br/><br/>
+<strong>[设计目标]</strong> 通过企业 IP 角色建立更有温度的品牌表达，让角色能够在活动传播、产品引导和视觉物料中保持一致识别，同时具备后续延展空间。<br/><br/>
+<div class="case-summary" aria-label="企业IP角色设计策略">
+  <div><strong>品牌识别</strong><span>角色气质与企业视觉语言保持一致。</span></div>
+  <div><strong>角色延展</strong><span>支持表情、动作和多场景应用。</span></div>
+  <div><strong>场景适配</strong><span>能进入产品、运营和传播触点。</span></div>
+</div>
+<strong>[关键行动]</strong><br/>
+• <strong>识别特征提炼：</strong>从品牌气质中提取可视觉化的形象线索，避免角色与企业形象脱节。<br/>
+• <strong>角色应用思考：</strong>考虑角色在宣传图、活动页面、产品提示和运营内容中的使用方式。<br/>
+• <strong>延展一致性控制：</strong>通过造型、比例和表情方向保证角色后续扩展时仍保持统一识别。<br/><br/>
+<div class="case-callout"><strong>角色价值：</strong>企业 IP 不是孤立插画，而是把品牌人格放进更多用户触点里的视觉系统。</div><br/>
+<strong>[成果与价值]</strong> 该角色设计为企业品牌提供了更具亲和力的表达方式，支持品牌在不同传播与产品场景中形成连续印象。
+`,
+          media: [
+            {
+              src: "https://img.xiliab.online/uploads/3vj_jxw_ww.jpg",
+              author: "LLXiao",
+              desc: "<strong>企业IP角色形象</strong><br/><span style='opacity:0.7;'>围绕品牌识别、角色延展和场景适配构建设计方向，让企业形象在不同触点中更容易被记住。</span>"
+            },
+          ],
+        },
+        {
+          title: "3D打印机操作界面 · 设备交互反馈",
+          subtitle: "面向 3D 打印设备操作场景，组织状态可视化、流程引导与打印过程反馈。",
+          company: "三维家",
+          meta: ["设备交互", "3D打印", "操作界面"],
+          thumb: "https://img.xiliab.online/uploads/3D_print.jpg",
+          article: `
+<strong>[项目挑战]</strong> 3D 打印设备操作涉及模型选择、打印准备、进度等待和状态判断等步骤。用户不仅需要知道当前能做什么，也需要在打印过程中持续理解设备是否正常运行。<br/><br/>
+<strong>[设计目标]</strong> 将设备状态、操作步骤和打印反馈组织成清晰的交互界面，让用户能够快速完成操作，并在等待过程中获得稳定、明确的过程反馈。<br/><br/>
+<div class="case-flow" aria-label="3D打印机操作流程">
+  <span>模型选择</span><i></i><span>打印设置</span><i></i><span>任务启动</span><i></i><span>过程反馈</span><i></i><span>打印完成</span>
+</div>
+<strong>[关键行动]</strong><br/>
+• <strong>设备状态可视化：</strong>突出当前任务、打印进度和关键状态，让用户先判断设备处于哪个阶段。<br/>
+• <strong>操作流程引导：</strong>按模型打印的自然顺序组织入口和操作，减少用户在设备功能之间来回寻找。<br/>
+• <strong>打印过程反馈：</strong>通过界面状态与演示视频呈现打印中的连续变化，让等待过程更可理解。<br/><br/>
+<div class="case-summary" aria-label="3D打印机交互设计策略">
+  <div><strong>看得懂状态</strong><span>明确设备当前阶段和任务进度。</span></div>
+  <div><strong>走得通流程</strong><span>按打印任务顺序组织操作路径。</span></div>
+  <div><strong>等得到反馈</strong><span>用过程反馈降低等待不确定感。</span></div>
+</div>
+<strong>[成果与价值]</strong> 该界面把设备操作从“功能查找”转向“任务推进”，帮助用户围绕模型打印过程完成判断、设置和等待。
+`,
+          media: [
+            {
+              src: "https://img.xiliab.online/uploads/3D_print.jpg",
+              author: "LLXiao",
+              desc: "<strong>3D打印机操作界面</strong><br/><span style='opacity:0.7;'>围绕模型打印任务组织界面信息，让设备状态、操作路径和打印反馈更清晰。</span>"
+            },
+            {
+              type: "video",
+              src: "https://img.xiliab.online/uploads/模型打印演示.mp4",
+              author: "LLXiao",
+              desc: "<strong>模型打印演示视频</strong><br/><span style='opacity:0.7;'>通过动态演示呈现打印过程反馈，帮助用户理解任务正在持续推进。</span>"
+            },
+          ],
         },
       ],
     },

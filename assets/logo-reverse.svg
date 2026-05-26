@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="280px" height="96px" viewBox="0 0 280 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>logo-reverse</title>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo-reverse">
+            <rect id="矩形" fill="#050505" fill-rule="nonzero" x="0" y="0" width="280" height="96"></rect>
+            <g id="编组" transform="translate(16, 16)">
+                <polygon id="路径" stroke="#545454" stroke-width="5" points="2 60 2 8 22 0 40 8 62 0 62 52 42 64 22 56 2 64"></polygon>
+                <polyline id="路径" stroke="#050505" stroke-width="13" points="6 53 6 30 23 30 23 12 40 12"></polyline>
+                <polyline id="路径" stroke="#F3F3F3" stroke-width="7" points="6 53 6 30 23 30 23 12 40 12"></polyline>
+                <polyline id="路径" stroke="#050505" stroke-width="13" points="40 12 58 12 46 31 59 50"></polyline>
+                <polyline id="路径" stroke="#E60000" stroke-width="7" points="40 12 58 12 46 31 59 50"></polyline>
+                <circle id="椭圆形" stroke="#050505" stroke-width="4" fill="#F3F3F3" fill-rule="nonzero" cx="6" cy="53" r="6"></circle>
+                <circle id="椭圆形" stroke="#F3F3F3" stroke-width="4" fill="#050505" fill-rule="nonzero" cx="23" cy="30" r="5"></circle>
+                <circle id="椭圆形" stroke="#E60000" stroke-width="4" fill="#050505" fill-rule="nonzero" cx="40" cy="12" r="5"></circle>
+                <circle id="椭圆形" stroke="#050505" stroke-width="4" fill="#E60000" fill-rule="nonzero" cx="59" cy="50" r="6"></circle>
+            </g>
+            <g id="编组" transform="translate(112, 15)" fill-rule="nonzero" font-family="Arial-BoldMT, Arial" font-weight="bold">
+                <text id="LLXiao" fill="#F3F3F3" font-size="34">
+                    <tspan x="0" y="31">LLXiao</tspan>
+                </text>
+                <text id="Experience-Map" fill="#B8B8B8" font-size="20">
+                    <tspan x="0" y="57">Experience Map</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>

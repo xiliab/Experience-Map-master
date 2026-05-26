@@ -9,6 +9,7 @@ $ext = $debug ? "" : ".min";
 $assets_files = $debug
   ? ['assets/main.css', 'assets/data.js', 'assets/image-modal.js', 'assets/main.js']
   : ['assets/main.min.css', 'assets/data.min.js', 'assets/image-modal.min.js', 'assets/main.min.js'];
+$brand_files = ['assets/logo.svg', 'assets/fav.png'];
 $hash_str = "";
 foreach ($assets_files as $f) {
   if (file_exists(__DIR__ . '/' . $f)) {
@@ -16,10 +17,172 @@ foreach ($assets_files as $f) {
   }
 }
 $v = substr(md5($hash_str), 0, 8);
+$brand_hash_str = "";
+foreach ($brand_files as $f) {
+  if (file_exists(__DIR__ . '/' . $f)) {
+    $brand_hash_str .= filemtime(__DIR__ . '/' . $f);
+  }
+}
+$brandV = substr(md5($brand_hash_str), 0, 8);
 $lastEditTime = $v; // 兼容旧变量名
 
 $extraHead = "";
 $canonicalUrl = rtrim($siteUrl, '/') . '/';
+$pageTitle = "LLXiao的体验地图 | 用户体验设计作品集与B端复杂系统案例";
+$pageDescription = "LLXiao的用户体验设计作品集，呈现14年从机械工程到B端复杂系统、SCRM、AI托管、智能硬件与内容运营自动化的设计实践。";
+$ogImage = "https://img.xiliab.online/uploads/screenshot.jpg";
+$profileKeywords = "LLXiao,用户体验设计,UX设计,B端产品设计,SCRM,AI托管,智能硬件,广州,作品集";
+$caseList = [
+  [
+    "name" => "智能家居 · 新风系统",
+    "company" => "兆晶",
+    "description" => "面向家庭空气管理场景，将新风设备参数与控制流程转化为清晰、低学习成本的移动端体验。",
+    "keywords" => ["C端体验", "智能硬件", "微信小程序", "空气管理"],
+    "image" => "https://img.xiliab.online/uploads/xinfeng_scene_01.jpg"
+  ],
+  [
+    "name" => "企业学习 · 商学院",
+    "company" => "金蓝盟",
+    "description" => "面向企业学习平台，系统识别体验问题并沉淀量化迭代依据，支持课程与学习流程优化。",
+    "keywords" => ["B端产品", "企业学习", "平台体验", "可用性审查"],
+    "image" => "https://img.xiliab.online/uploads/JLM_sxy_06.jpg"
+  ],
+  [
+    "name" => "家装设计 · 三维家",
+    "company" => "三维家",
+    "description" => "面向家装设计工具，梳理从方案创建到展示交付的任务路径，支持专业设计流程连续推进。",
+    "keywords" => ["B端产品", "设计工具", "3D可视化", "任务路径"],
+    "image" => "https://img.xiliab.online/uploads/3VJ_web.jpg"
+  ],
+  [
+    "name" => "全渠道私域 · 微聊",
+    "company" => "银光",
+    "description" => "面向私域运营团队，组织客户触达、会话跟进与销售协作路径，提升多角色协作效率。",
+    "keywords" => ["私域运营", "企业微信", "销售协作", "客户触达"],
+    "image" => "https://img.xiliab.online/uploads/YG_wl_16.jpg"
+  ],
+  [
+    "name" => "SCRM · 金桥",
+    "company" => "银光",
+    "description" => "围绕客户画像、线索管理与销售分析建立统一信息框架，支持私域运营团队持续跟进。",
+    "keywords" => ["SCRM", "客户画像", "线索管理", "销售分析"],
+    "image" => "https://img.xiliab.online/uploads/YG_jq_home.jpg"
+  ],
+  [
+    "name" => "AI托管 · 智能客服接待",
+    "company" => "银光",
+    "description" => "面向企业客服接待场景，将权限说明、AI回复机制与人工接管组织为可控、可信的智能服务体验。",
+    "keywords" => ["AI产品", "智能客服", "人机协同", "可信AI"],
+    "image" => "https://img.xiliab.online/uploads/ai-tuoguan-access-overview.jpg"
+  ],
+  [
+    "name" => "内容运营 · 栏目系统",
+    "company" => "银光",
+    "description" => "面向私域内容运营场景，通过自动邀约与行为追踪，推动视频完播率提升21%、员工工作量降低38%。",
+    "keywords" => ["AI自动化", "私域运营", "数据追踪", "内容运营"],
+    "image" => "https://img.xiliab.online/uploads/YG_lanmu_01.jpg"
+  ],
+  [
+    "name" => "继续前行 · 体验永不停",
+    "company" => "下一段旅程",
+    "description" => "围绕个人成长、体验观察与持续实践，沉淀跨领域设计判断并指向下一段旅程。",
+    "keywords" => ["个人成长", "体验观察", "持续实践", "设计方法"],
+    "image" => "https://img.xiliab.online/uploads/keep_going_myself.jpg"
+  ],
+  [
+    "name" => "加载动画 · 等待中的品牌反馈",
+    "company" => "金蓝盟",
+    "description" => "通过动效节奏、状态反馈与品牌识别，让系统等待时间更可感知、更有秩序。",
+    "keywords" => ["动效设计", "加载反馈", "品牌体验", "状态反馈"],
+    "image" => "https://img.xiliab.online/uploads/JLM_donghua.gif"
+  ],
+  [
+    "name" => "企业IP角色 · 品牌人格延展",
+    "company" => "三维家",
+    "description" => "围绕企业品牌识别与传播场景，设计可延展、可应用的 IP 角色形象。",
+    "keywords" => ["品牌设计", "IP角色", "视觉延展", "品牌识别"],
+    "image" => "https://img.xiliab.online/uploads/3vj_jxw_ww.jpg"
+  ],
+  [
+    "name" => "3D打印机操作界面 · 设备交互反馈",
+    "company" => "三维家",
+    "description" => "面向3D打印设备操作场景，组织状态可视化、流程引导与打印过程反馈。",
+    "keywords" => ["设备交互", "3D打印", "操作界面", "过程反馈"],
+    "image" => "https://img.xiliab.online/uploads/3D_print.jpg"
+  ],
+];
+$itemListElements = [];
+foreach ($caseList as $idx => $case) {
+  $itemListElements[] = [
+    "@type" => "ListItem",
+    "position" => $idx + 1,
+    "item" => [
+      "@type" => "CreativeWork",
+      "@id" => $canonicalUrl . "#case-" . ($idx + 1),
+      "name" => $case["name"],
+      "description" => $case["description"],
+      "creator" => ["@id" => $canonicalUrl . "#person"],
+      "sourceOrganization" => [
+        "@type" => "Organization",
+        "name" => $case["company"]
+      ],
+      "about" => $case["keywords"],
+      "keywords" => implode(",", $case["keywords"]),
+      "image" => $case["image"],
+      "inLanguage" => "zh-Hans"
+    ]
+  ];
+}
+$structuredData = [
+  "@context" => "https://schema.org",
+  "@graph" => [
+    [
+      "@type" => "Person",
+      "@id" => $canonicalUrl . "#person",
+      "name" => "LLXiao",
+      "jobTitle" => "用户体验设计师",
+      "url" => $canonicalUrl,
+      "email" => "mailto:xiliab@icloud.com",
+      "address" => [
+        "@type" => "PostalAddress",
+        "addressLocality" => "广州",
+        "addressCountry" => "CN"
+      ],
+      "knowsAbout" => ["用户体验设计", "B端复杂系统", "SCRM", "AI托管", "智能硬件体验", "私域运营自动化", "设计系统"]
+    ],
+    [
+      "@type" => "WebSite",
+      "@id" => $canonicalUrl . "#website",
+      "url" => $canonicalUrl,
+      "name" => "LLXiao的体验地图",
+      "description" => $pageDescription,
+      "inLanguage" => "zh-Hans",
+      "publisher" => ["@id" => $canonicalUrl . "#person"]
+    ],
+    [
+      "@type" => "ProfilePage",
+      "@id" => $canonicalUrl . "#profile",
+      "url" => $canonicalUrl,
+      "name" => $pageTitle,
+      "description" => $pageDescription,
+      "isPartOf" => ["@id" => $canonicalUrl . "#website"],
+      "mainEntity" => ["@id" => $canonicalUrl . "#person"],
+      "primaryImageOfPage" => [
+        "@type" => "ImageObject",
+        "url" => $ogImage
+      ],
+      "about" => ["用户体验设计作品集", "B端产品设计", "AI产品设计", "广州设计师"]
+    ],
+    [
+      "@type" => "ItemList",
+      "@id" => $canonicalUrl . "#case-list",
+      "name" => "LLXiao 用户体验设计项目案例",
+      "numberOfItems" => count($caseList),
+      "itemListElement" => $itemListElements
+    ]
+  ]
+];
+$structuredDataJson = json_encode($structuredData, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT | JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
 
 echo
   <<<HTML
@@ -33,33 +196,49 @@ echo
   [v-cloak],.hidden-area{display: none;}
   </style>
     <meta charset="UTF-8">
-    <title>LLXiao — 体验地图 | 用户体验设计作品集</title>
+    <title>{$pageTitle}</title>
     <meta name="robots" content="index, follow"/>
     <meta name="author" content="LLXiao" />
-    <meta name="description" content="十四年用户体验设计实践，从机械工程到B端复杂系统，用设计驱动产品价值增长。交互式地图呈现完整职业历程与作品集。"/>
+    <meta name="description" content="{$pageDescription}"/>
+    <meta name="keywords" content="{$profileKeywords}"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
     <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#f4efe3">
 
     <link rel="canonical" href="{$canonicalUrl}"/>
     <meta property="og:url" content="{$canonicalUrl}"/>
     <meta property="og:type" content="website">
-    <meta property="og:title" content="LLXiao — 体验地图">
-    <meta property="og:description" content="十四年用户体验设计实践，从机械工程到B端复杂系统，用设计驱动产品价值增长。交互式地图呈现完整职业历程与作品集。">
-    <meta property="og:image" content="https://img.xiliab.online/uploads/screenshot.jpg">
+    <meta property="og:site_name" content="LLXiao的体验地图">
+    <meta property="og:locale" content="zh_CN">
+    <meta property="og:title" content="{$pageTitle}">
+    <meta property="og:description" content="{$pageDescription}">
+    <meta property="og:image" content="{$ogImage}">
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="LLXiao — 体验地图" />
-    <meta name="twitter:description" content="十四年用户体验设计实践，从机械工程到B端复杂系统，用设计驱动产品价值增长。交互式地图呈现完整职业历程与作品集。" />
+    <meta name="twitter:title" content="{$pageTitle}" />
+    <meta name="twitter:description" content="{$pageDescription}" />
     <meta name="twitter:site" content="@xiliab" />
-    <meta name="twitter:image" content="https://img.xiliab.online/uploads/screenshot.jpg" />
+    <meta name="twitter:creator" content="@xiliab" />
+    <meta name="twitter:image" content="{$ogImage}" />
+    <script type="application/ld+json">
+{$structuredDataJson}
+    </script>
 
     <link rel="stylesheet" href="{$assetsDir}/main{$ext}.css?v={$v}"/>
     {$extraHead}
     <link rel="stylesheet" href="{$assetsDir}/sm/result.css"/>
-    <link rel="icon" href="{$assetsDir}/fav.png">
+    <link rel="icon" href="{$assetsDir}/fav.png?v={$brandV}">
+    <link rel="apple-touch-icon" href="{$assetsDir}/fav.png?v={$brandV}">
 
 	</head>
 <body>
+<section class="seo-summary" aria-label="LLXiao用户体验设计作品集摘要">
+  <h2>LLXiao 用户体验设计作品集</h2>
+  <p>LLXiao 是来自广州的用户体验设计师，经历覆盖机械设计、UI设计、设计管理、B端复杂系统、C端智能硬件、SCRM、AI托管和内容运营自动化。</p>
+  <p>体验地图包含 11 个职业与能力节点，项目案例包括智能家居新风系统、企业学习商学院、家装设计三维家、全渠道私域微聊、SCRM金桥、AI托管智能客服接待、内容运营栏目系统、继续前行、加载动画、企业IP角色、3D打印机操作界面。</p>
+  <p>公开项目经历采用公司简称：子律、朗岸、兆晶、金蓝盟、三维家、银光。广东工业大学作为教育经历保留完整名称。</p>
+  <p>量化成果包括商学院体验审查梳理 38 个故障点、21 项产品优化机会、260 个交互问题及 182 个视觉改进项；栏目系统推动视频观看完整率提升 21%、员工工作量降低 38%。</p>
+</section>
 <div id="app" :class="[showAllCornerNames ? 'show-all-corners' : '']">
   <main class="experience-map">
     <div class="inner">
@@ -125,8 +304,8 @@ echo
   <aside class="desc skew-p">
     <div class="logo">
       <div class="inner skew-n">
-        <h1 class="title-font">L<span></span>LXiao<span></span>的体验地图</h1>
-        <img src="{$assetsDir}/logo.svg" alt="LLXiao的体验地图"/>
+        <img class="brand-mark" src="{$assetsDir}/logo.svg?v={$brandV}" alt="" aria-hidden="true"/>
+        <h1 class="title-font">LLXiao<span> 的体验地图</span></h1>
       </div>
     </div>
     <div class="corner-info">
