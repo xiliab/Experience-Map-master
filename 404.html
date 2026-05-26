@@ -29,18 +29,34 @@
     
     /* 核心卡片容器：毛玻璃与倾斜语言 */
     .card {
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.68);
       border-radius: 1.5rem 0.5rem 1.5rem 0.5rem;
       padding: 3.5rem 4rem;
-      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+      box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.72);
       -webkit-backdrop-filter: blur(20px);
       backdrop-filter: blur(20px);
       text-align: center;
       max-width: 600px;
       width: 100%;
       position: relative;
-      overflow: hidden;
+      isolation: isolate;
+      overflow: visible;
       transform: skewX(-9deg);
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: inherit;
+      background: rgba(255, 255, 255, 0.5);
+      box-shadow: -10px 10px 40px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.62);
+      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(20px);
+      transform: skewX(18deg);
+      transform-origin: center;
+      pointer-events: none;
     }
     
     /* 内容反向倾斜摆正 */
@@ -49,6 +65,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
 
     /* 插画容器 */
@@ -152,6 +170,15 @@
         max-width: none;
         padding: 2rem 1.5rem;
         border-radius: 1rem 0.35rem 1rem 0.35rem;
+        transform: skewX(-6deg);
+      }
+
+      .card::before {
+        transform: skewX(12deg);
+      }
+
+      .card-inner {
+        transform: skewX(6deg);
       }
 
       .illustration {
